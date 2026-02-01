@@ -196,3 +196,15 @@ li { margin-bottom: 0.25rem; }
 
 /* Disabled state */
 button:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* Notification Styles */
+.fixed { position: fixed; }
+.top-4 { top: 1rem; }
+.right-4 { right: 1rem; }
+.z-50 { z-index: 50; }
+.shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+
+/* Additional notification colors */
+.bg-blue-100 { background-color: #dbeafe; }
+.border-blue-400 { border-color: #60a5fa; }
+.text-blue-700 { color: #1d4ed8; }

@@ -76,9 +76,9 @@
             <a href="{{ route('profile.edit') }}" class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700 transition-colors">
                 Edit Profile
             </a>
-            <form method="POST" action="{{ route('logout') }}" class="inline">
+            <form id="ajax-logout-form-home" method="POST" action="{{ route('logout') }}" class="inline">
                 @csrf
-                <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors">
+                <button type="button" onclick="handleLogout()" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors">
                     Logout
                 </button>
             </form>
