@@ -161,3 +161,38 @@ button:focus {
 .fill-current { fill: currentColor; }
 .text-gray-800 { color: #1f2937; }
 .text-gray-500 { color: #6b7280; }
+
+/* AJAX Form Styles */
+.hidden { display: none; }
+.animate-spin { animation: spin 1s linear infinite; }
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Success and Error Messages */
+.bg-green-100 { background-color: #f0fdf4; }
+.border-green-400 { border-color: #4ade80; }
+.text-green-700 { color: #15803d; }
+.bg-red-100 { background-color: #fef2f2; }
+.border-red-400 { border-color: #f87171; }
+.text-red-700 { color: #b91c1c; }
+
+/* Button Styles for AJAX */
+.bg-gray-800 { background-color: #1f2937; }
+.hover\:bg-gray-700:hover { background-color: #374151; }
+.border-transparent { border-color: transparent; }
+.font-semibold { font-weight: 600; }
+.text-xs { font-size: 0.75rem; }
+.uppercase { text-transform: uppercase; }
+.tracking-widest { letter-spacing: 0.1em; }
+.focus\:ring-2:focus { box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.5); }
+.focus\:ring-offset-2:focus { box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.5), 0 0 0 calc(4px) white; }
+.focus\:ring-indigo-500:focus { box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.5), 0 0 0 calc(4px) white; }
+
+/* Form validation feedback */
+ul { list-style-type: disc; margin-left: 1.5rem; }
+li { margin-bottom: 0.25rem; }
+
+/* Disabled state */
+button:disabled { opacity: 0.6; cursor: not-allowed; }
