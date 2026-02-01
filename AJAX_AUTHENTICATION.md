@@ -25,7 +25,8 @@ The authentication system now uses AJAX submission for registration, login, and 
 - **No Page Reload**: Logs out without page refresh
 - **Toast Notifications**: Shows logout status messages
 - **Home Redirect**: Redirects to home page after successful logout
-- **Multiple Forms**: Works from navigation, mobile menu, and home page
+- **Multiple Forms**: Works from navigation dropdown, mobile menu, home page, and header button
+- **Power Icon**: Header logout button features a recognizable power off icon
 
 ## Technical Details
 
@@ -132,6 +133,7 @@ The authentication system now uses AJAX submission for registration, login, and 
 
 ### Layout
 - `resources/views/layouts/app.blade.php` - Added global AJAX logout JavaScript
+- `resources/views/components/app-layout.blade.php` - Added AJAX logout JavaScript for dashboard/profile pages
 
 ## Benefits
 
@@ -161,7 +163,7 @@ The authentication system now uses AJAX submission for registration, login, and 
 
 ### Logout Testing
 1. Login to the application
-2. Click logout from navigation, mobile menu, or home page
+2. Click logout from navigation dropdown, mobile menu, home page, or header power button
 3. Confirm the logout dialog
 4. Observe the notification and redirect to home page
 

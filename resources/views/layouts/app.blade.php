@@ -21,10 +21,11 @@
             function handleLogout() {
                 // Show confirmation dialog
                 if (confirm('{{ __("Are you sure you want to logout?") }}')) {
-                    // Get the form (could be desktop, mobile, or home page)
+                    // Get the form (could be desktop, mobile, home page, or header)
                     const form = document.getElementById('ajax-logout-form') || 
                                 document.getElementById('ajax-logout-form-mobile') ||
-                                document.getElementById('ajax-logout-form-home');
+                                document.getElementById('ajax-logout-form-home') ||
+                                document.getElementById('ajax-logout-form-header');
                     
                     if (form) {
                         // Send AJAX request
