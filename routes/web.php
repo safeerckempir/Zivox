@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/api/stores/list', [StoreController::class, 'list'])->name('api.stores.list');
     Route::get('/api/stores/{store}/accounts/list', [AccountController::class, 'list'])->name('api.accounts.list');
     Route::get('/api/stores/{store}/transactions/list', [TransactionController::class, 'list'])->name('api.transactions.list');
+    Route::get('/api/dashboard/widgets', [StoreController::class, 'dashboardWidgets'])->name('api.dashboard.widgets');
 });
 
 require __DIR__.'/auth.php';

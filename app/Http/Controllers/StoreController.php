@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Store;
+use App\Models\Account;
 use Illuminate\Http\Request;
 
 class StoreController extends Controller
@@ -16,6 +17,25 @@ class StoreController extends Controller
     {
         $stores = Store::where('user_id', auth()->id())->latest()->get();
         return response()->json(['success' => true, 'stores' => $stores]);
+    }
+
+    public function dashboardWidgets(Request $request)
+    {
+        $stores = Store::where('user_id', auth()->id())->get();
+        
+        $storesData = $stores->map(function($store) {
+            $accountsCount = Account::where('store_id', $store->id)->count();
+            $totalBalance = Account::where('store_id', $store->id)->sum('balance');
+            return [
+                'id' => $store->id,
+                'name' => $store->name,
+                'currency' => $store->currency,
+                'accounts_count' => $accountsCount,
+                'total_balance' => $totalBalance
+            ];
+        });
+        
+        return response()->json(['success' => true, 'stores' => $storesData]);
     }
 
     public function create()
