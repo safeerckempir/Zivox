@@ -115,7 +115,17 @@ body {
 .focus\:outline-none:focus { outline: none; }
 .border-t { border-top-width: 1px; }
 .border-gray-200 { border-color: #e5e7eb; }
-
+#nav-links{
+    display: flex !important;
+    position: fixed;
+    width: 90vw;
+    text-align: center;
+    top: 50px;
+    margin: auto;
+    background: #3ba161;
+    border-radius: 100px;
+    padding: 5px 10px;
+}
 /* Responsive */
 @media (min-width: 640px) {
     .sm\:px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }

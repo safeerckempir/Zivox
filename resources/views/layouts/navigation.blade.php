@@ -11,10 +11,13 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <div id="nav-links" class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex" style="display: flex !important;">
                     @auth
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                             {{ __('Dashboard') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('stores.index')" :active="request()->routeIs('stores.*')">
+                            {{ __('Stores') }}
                         </x-nav-link>
                     @endauth
                     @guest
@@ -104,6 +107,9 @@
             @auth
                 <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                     {{ __('Dashboard') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('stores.index')" :active="request()->routeIs('stores.*')">
+                    {{ __('Stores') }}
                 </x-responsive-nav-link>
             @endauth
             @guest
