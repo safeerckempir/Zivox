@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StoreController;
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,6 +22,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/stores', [StoreController::class, 'index'])->name('stores.index');
     Route::get('/stores/create', [StoreController::class, 'create'])->name('stores.create');
     Route::post('/stores', [StoreController::class, 'store'])->name('stores.store');
+    
+    Route::get('/stores/{store}/accounts', [AccountController::class, 'index'])->name('accounts.index');
+    Route::get('/stores/{store}/accounts/create', [AccountController::class, 'create'])->name('accounts.create');
+    Route::post('/stores/{store}/accounts', [AccountController::class, 'store'])->name('accounts.store');
+    
+    Route::get('/stores/{store}/transactions', [TransactionController::class, 'index'])->name('transactions.index');
+    Route::get('/stores/{store}/transactions/create', [TransactionController::class, 'create'])->name('transactions.create');
+    Route::post('/stores/{store}/transactions', [TransactionController::class, 'store'])->name('transactions.store');
 });
 
 require __DIR__.'/auth.php';
