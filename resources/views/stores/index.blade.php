@@ -48,6 +48,7 @@ function loadStores() {
                         <p class="text-sm text-gray-500 mt-2">Contact: ${store.contact_number} | ${store.contact_email}</p>
                         <p class="text-sm text-gray-500">Created: ${formattedDate}</p>
                         <div class="mt-4 space-x-2">
+                            <a href="/stores/${store.id}/edit" class="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700">Edit</a>
                             <a href="/stores/${store.id}/accounts" class="bg-green-600 text-white px-3 py-1 rounded text-sm hover:bg-green-700">Accounts</a>
                             <a href="/stores/${store.id}/transactions" class="bg-purple-600 text-white px-3 py-1 rounded text-sm hover:bg-purple-700">Transactions</a>
                         </div>

@@ -50,4 +50,40 @@ class StoreController extends Controller
 
         return redirect()->route('stores.index')->with('success', 'Store created successfully!');
     }
+
+    public function edit($id)
+    {
+        $store = Store::where('id', $id)->where('user_id', auth()->id())->firstOrFail();
+        return view('stores.edit', compact('store'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $store = Store::where('id', $id)->where('user_id', auth()->id())->firstOrFail();
+        
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'address_line1' => 'required|string|max:255',
+            'address_line2' => 'nullable|string|max:255',
+            'city' => 'required|string|max:255',
+            'state' => 'required|string|max:255',
+            'postcode' => 'required|string|max:20',
+            'country' => 'required|string|max:255',
+            'currency' => 'required|string|max:10',
+            'contact_number' => 'required|string|max:20',
+            'contact_email' => 'required|email|max:255',
+        ]);
+
+        $store->update($validated);
+
+        if ($request->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Store updated successfully!',
+                'redirect' => route('stores.index')
+            ]);
+        }
+
+        return redirect()->route('stores.index')->with('success', 'Store updated successfully!');
+    }
 }
