@@ -65,7 +65,7 @@
                     <!-- Logout Button with Power Icon -->
                     <form id="ajax-logout-form-header" method="POST" action="{{ route('logout') }}" class="inline">
                         @csrf
-                        <button type="button" onclick="handleLogout()" 
+                        <button type="button" style="background-color: #ffffff;"  onclick="handleLogout()" 
                                 class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-red-600 hover:text-red-700 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition ease-in-out duration-150"
                                 title="{{ __('Log Out') }}">
                             <i class="fas fa-power-off"></i>
