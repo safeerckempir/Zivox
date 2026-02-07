@@ -27,14 +27,18 @@ class StoreController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'address' => 'required|string',
+            'address_line1' => 'required|string|max:255',
+            'address_line2' => 'nullable|string|max:255',
+            'city' => 'required|string|max:255',
+            'state' => 'required|string|max:255',
+            'postcode' => 'required|string|max:20',
+            'country' => 'required|string|max:255',
+            'currency' => 'required|string|max:10',
+            'contact_number' => 'required|string|max:20',
+            'contact_email' => 'required|email|max:255',
         ]);
 
-        $store = Store::create([
-            'name' => $validated['name'],
-            'address' => $validated['address'],
-            'user_id' => auth()->id(),
-        ]);
+        Store::create(array_merge($validated, ['user_id' => auth()->id()]));
 
         if ($request->ajax()) {
             return response()->json([

@@ -12,16 +12,60 @@
 
                     <div class="mb-4">
                         <label for="name" class="block text-sm font-medium text-gray-700">Store Name</label>
-                        <input type="text" name="name" id="name" value="{{ old('name') }}" required
-                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
-                        <p id="name-error" class="mt-1 text-sm text-red-600 hidden"></p>
+                        <input type="text" name="name" id="name" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                     </div>
 
                     <div class="mb-4">
-                        <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
-                        <textarea name="address" id="address" rows="3" required
-                                  class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">{{ old('address') }}</textarea>
-                        <p id="address-error" class="mt-1 text-sm text-red-600 hidden"></p>
+                        <label for="address_line1" class="block text-sm font-medium text-gray-700">Address Line 1</label>
+                        <input type="text" name="address_line1" id="address_line1" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="address_line2" class="block text-sm font-medium text-gray-700">Address Line 2</label>
+                        <input type="text" name="address_line2" id="address_line2" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="city" class="block text-sm font-medium text-gray-700">City</label>
+                        <input type="text" name="city" id="city" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="state" class="block text-sm font-medium text-gray-700">State</label>
+                        <input type="text" name="state" id="state" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="postcode" class="block text-sm font-medium text-gray-700">Postcode</label>
+                        <input type="text" name="postcode" id="postcode" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="country" class="block text-sm font-medium text-gray-700">Country</label>
+                        <select name="country" id="country" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                            <option value="">Select Country</option>
+                            <option value="United States" data-currency="USD">United States</option>
+                            <option value="United Kingdom" data-currency="GBP">United Kingdom</option>
+                            <option value="UAE" data-currency="AED">UAE</option>
+                            <option value="Qatar" data-currency="QAR">Qatar</option>
+                            <option value="India" data-currency="INR">India</option>
+                            <option value="Oman" data-currency="OMR">Oman</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="currency" class="block text-sm font-medium text-gray-700">Currency</label>
+                        <input type="text" name="currency" id="currency" required readonly class="mt-1 block w-full rounded-md border-gray-300 shadow-sm bg-gray-100">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="contact_number" class="block text-sm font-medium text-gray-700">Contact Number</label>
+                        <input type="text" name="contact_number" id="contact_number" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="contact_email" class="block text-sm font-medium text-gray-700">Contact Email</label>
+                        <input type="email" name="contact_email" id="contact_email" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                     </div>
 
                     <div class="flex items-center justify-end mt-6">
@@ -37,9 +81,14 @@
 </div>
 
 <script>
+document.getElementById('country').addEventListener('change', function() {
+    const selectedOption = this.options[this.selectedIndex];
+    const currency = selectedOption.getAttribute('data-currency');
+    document.getElementById('currency').value = currency || '';
+});
+
 document.getElementById('store-form').addEventListener('submit', function(e) {
     e.preventDefault();
-    
     const form = this;
     const submitBtn = document.getElementById('submit-btn');
     const formData = new FormData(form);
@@ -47,39 +96,14 @@ document.getElementById('store-form').addEventListener('submit', function(e) {
     submitBtn.disabled = true;
     submitBtn.textContent = 'Creating...';
     
-    document.getElementById('name-error').classList.add('hidden');
-    document.getElementById('address-error').classList.add('hidden');
-    
     fetch(form.action, {
         method: 'POST',
         body: formData,
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest',
-            'Accept': 'application/json'
-        }
+        headers: {'X-Requested-With': 'XMLHttpRequest', 'Accept': 'application/json'}
     })
-    .then(response => {
-        if (!response.ok) {
-            return response.json().then(err => Promise.reject(err));
-        }
-        return response.json();
-    })
-    .then(data => {
-        if (data.success) {
-            window.location.href = data.redirect + '?success=1';
-        }
-    })
+    .then(response => response.ok ? response.json() : response.json().then(err => Promise.reject(err)))
+    .then(data => data.success && (window.location.href = data.redirect + '?success=1'))
     .catch(error => {
-        if (error.errors) {
-            if (error.errors.name) {
-                document.getElementById('name-error').textContent = error.errors.name[0];
-                document.getElementById('name-error').classList.remove('hidden');
-            }
-            if (error.errors.address) {
-                document.getElementById('address-error').textContent = error.errors.address[0];
-                document.getElementById('address-error').classList.remove('hidden');
-            }
-        }
         submitBtn.disabled = false;
         submitBtn.textContent = 'Create Store';
     });
