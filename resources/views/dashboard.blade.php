@@ -31,7 +31,7 @@ window.addEventListener('DOMContentLoaded', function() {
                 html += `
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6">
-                            <h4 class="text-lg font-semibold text-gray-900 mb-2">${store.name}</h4>
+                            <a href="/stores/${store.id}" class="text-lg font-semibold text-blue-600 hover:text-blue-800 mb-2 block">${store.name}</a>
                             <div class="border-t border-gray-200 pt-4 mt-4">
                                 <div class="flex justify-between mb-2">
                                     <span class="text-gray-600">Total Accounts:</span>

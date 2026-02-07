@@ -42,7 +42,7 @@ function loadStores() {
                 
                 html += `
                     <div class="border border-gray-200 rounded-lg p-4">
-                        <h3 class="text-xl font-semibold mb-2">${store.name}</h3>
+                        <a href="/stores/${store.id}" class="text-xl font-semibold mb-2 text-blue-600 hover:text-blue-800">${store.name}</a>
                         <p class="text-gray-600">${store.address_line1}, ${store.city}, ${store.state} ${store.postcode}</p>
                         <p class="text-gray-600">${store.country} | ${store.currency}</p>
                         <p class="text-sm text-gray-500 mt-2">Contact: ${store.contact_number} | ${store.contact_email}</p>

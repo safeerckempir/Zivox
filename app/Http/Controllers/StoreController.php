@@ -43,6 +43,14 @@ class StoreController extends Controller
         return view('stores.create');
     }
 
+    public function show($id)
+    {
+        $store = Store::where('id', $id)->where('user_id', auth()->id())->firstOrFail();
+        $accountsCount = Account::where('store_id', $id)->count();
+        $totalBalance = Account::where('store_id', $id)->sum('balance');
+        return view('stores.show', compact('store', 'accountsCount', 'totalBalance'));
+    }
+
     public function store(Request $request)
     {
         $validated = $request->validate([

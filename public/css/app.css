@@ -41,6 +41,8 @@ body {
 .bg-red-700:hover { background-color: #b91c1c; }
 .bg-gray-500 { background-color: #6b7280; }
 
+.text-blue-600 { color: #2563eb; }
+.hover\:text-blue-800:hover { color: #1e40af; }
 .text-green-600 { color: #16a34a; }
 .text-white { color: white; }
 .text-gray-900 { color: #111827; }
@@ -61,6 +63,7 @@ body {
 .antialiased { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
 /* Spacing */
+.ml-16 { margin-left: 4rem; }
 .mb-4 { margin-bottom: 1rem; }
 .mb-6 { margin-bottom: 1.5rem; }
 .mb-8 { margin-bottom: 2rem; }
@@ -69,6 +72,7 @@ body {
 .mt-4 { margin-top: 1rem; }
 .mt-6 { margin-top: 1.5rem; }
 .pt-4 { padding-top: 1rem; }
+.space-y-2 > * + * { margin-top: 0.5rem; }
 .space-x-2 > * + * { margin-left: 0.5rem; }
 .space-x-4 > * + * { margin-left: 1rem; }
 .space-y-4 > * + * { margin-top: 1rem; }
@@ -90,6 +94,7 @@ body {
 .text-center { text-align: center; }
 .grid { display: grid; }
 .grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
+.grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
 .grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
 .gap-6 { gap: 1.5rem; }
 .gap-8 { gap: 2rem; }
@@ -151,6 +156,7 @@ body {
 
 @media (min-width: 768px) {
     .md\:grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
+    .md\:grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
     .md\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
 }
 
