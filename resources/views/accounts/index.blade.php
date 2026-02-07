@@ -24,7 +24,7 @@
 </div>
 
 <script>
-fetch('{{ route('accounts.index', $store->id) }}', {
+fetch('{{ route('api.accounts.list', $store->id) }}', {
     headers: {
         'X-Requested-With': 'XMLHttpRequest',
         'Accept': 'application/json'

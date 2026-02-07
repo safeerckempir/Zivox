@@ -12,13 +12,14 @@ class TransactionController extends Controller
     public function index(Request $request, $storeId)
     {
         $store = Store::where('id', $storeId)->where('user_id', auth()->id())->firstOrFail();
-        
-        if ($request->ajax()) {
-            $transactions = Transaction::with('account')->where('store_id', $storeId)->latest()->get();
-            return response()->json(['success' => true, 'transactions' => $transactions]);
-        }
-        
         return view('transactions.index', compact('store'));
+    }
+
+    public function list(Request $request, $storeId)
+    {
+        Store::where('id', $storeId)->where('user_id', auth()->id())->firstOrFail();
+        $transactions = Transaction::with('account')->where('store_id', $storeId)->latest()->get();
+        return response()->json(['success' => true, 'transactions' => $transactions]);
     }
 
     public function create($storeId)

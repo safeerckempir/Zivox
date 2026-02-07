@@ -9,14 +9,13 @@ class StoreController extends Controller
 {
     public function index(Request $request)
     {
-        if ($request->ajax()) {
-            $stores = Store::where('user_id', auth()->id())->latest()->get();
-            return response()->json([
-                'success' => true,
-                'stores' => $stores
-            ]);
-        }
         return view('stores.index');
+    }
+
+    public function list(Request $request)
+    {
+        $stores = Store::where('user_id', auth()->id())->latest()->get();
+        return response()->json(['success' => true, 'stores' => $stores]);
     }
 
     public function create()

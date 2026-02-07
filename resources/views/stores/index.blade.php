@@ -24,7 +24,7 @@
 
 <script>
 function loadStores() {
-    fetch('{{ route('stores.index') }}', {
+    fetch('{{ route('api.stores.list') }}', {
         headers: {
             'X-Requested-With': 'XMLHttpRequest',
             'Accept': 'application/json'

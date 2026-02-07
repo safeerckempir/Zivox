@@ -24,7 +24,7 @@
 </div>
 
 <script>
-fetch('{{ route('transactions.index', $store->id) }}', {
+fetch('{{ route('api.transactions.list', $store->id) }}', {
     headers: {'X-Requested-With': 'XMLHttpRequest', 'Accept': 'application/json'}
 })
 .then(response => response.json())

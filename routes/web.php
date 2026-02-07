@@ -30,6 +30,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/stores/{store}/transactions', [TransactionController::class, 'index'])->name('transactions.index');
     Route::get('/stores/{store}/transactions/create', [TransactionController::class, 'create'])->name('transactions.create');
     Route::post('/stores/{store}/transactions', [TransactionController::class, 'store'])->name('transactions.store');
+    
+    Route::get('/api/stores/list', [StoreController::class, 'list'])->name('api.stores.list');
+    Route::get('/api/stores/{store}/accounts/list', [AccountController::class, 'list'])->name('api.accounts.list');
+    Route::get('/api/stores/{store}/transactions/list', [TransactionController::class, 'list'])->name('api.transactions.list');
 });
 
 require __DIR__.'/auth.php';

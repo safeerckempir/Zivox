@@ -11,13 +11,14 @@ class AccountController extends Controller
     public function index(Request $request, $storeId)
     {
         $store = Store::where('id', $storeId)->where('user_id', auth()->id())->firstOrFail();
-        
-        if ($request->ajax()) {
-            $accounts = Account::where('store_id', $storeId)->get();
-            return response()->json(['success' => true, 'accounts' => $accounts]);
-        }
-        
         return view('accounts.index', compact('store'));
+    }
+
+    public function list(Request $request, $storeId)
+    {
+        Store::where('id', $storeId)->where('user_id', auth()->id())->firstOrFail();
+        $accounts = Account::where('store_id', $storeId)->get();
+        return response()->json(['success' => true, 'accounts' => $accounts]);
     }
 
     public function create($storeId)
